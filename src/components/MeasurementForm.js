@@ -19,6 +19,7 @@ function MeasurementForm({id}){
         return <h1>Loading...</h1>
     }
     //test
+    //test2
 
     function handleSubmit(event){
         event.preventDefault()
