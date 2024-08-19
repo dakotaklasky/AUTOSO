@@ -1,0 +1,104 @@
+{
+    "patterns": [
+        {   
+            "id": 1,
+            "type": "top",
+                "measurements": {
+                "A": "Bust Circumference at fullest part",
+                "B": "Waist Circumference at natural bend",
+                "C": "High Hip/Abdomen Circumference 4in below waist",
+                "D": "High Hip Circumference at fullest part ",
+                "E": "Neck Circumference at base of neck",
+                "F": "Front Waist Length from center front neck",
+                "G": "Back Waist Length from center back neck",
+                "H": "Front Shoulder to Waist from side neck",
+                "I": "Back Shoulder to Waist from side neck",
+                "J": "Shoulder Length",
+                "K": "Across Back armhole to armhole",
+                "L": "Across Back 2in below armhole, sideseam to sideseam",
+                "M":"Across Front armhole to armhole",
+                "N": "Side Length from underarm to waist",
+                "O": "Sleeve Length shoulder to wrist, elbow bent",
+                "P": "Underarm Length, underarm to waist",
+                "Q": "Bicep Circumference at fullest part of upper arm",
+                "R": "Elbow Circumference",
+                "S": "Wrist Circumference"
+            }
+        },
+        { 
+        "id": 2,
+        "type": "pants",
+        "measurements": {
+            "B": "Waist Circumference at natural bend",
+            "C": "High Hip/Abdomen Circumference 4in below waist",
+            "D": "High Hip Circumference at fullest part ",
+            "T": "Outseam waist to ankle",
+            "U": "Inseam crotch to ankle",
+            "V": "Crotch Depth, seated, waist to chair",
+            "W": "Thigh Circumference",
+            "X": "Ankle Circumference"
+        }
+    }
+],
+"measurements": [
+    {
+        "id": 1,
+        "name": "Dakota's Measurements",
+        "type": "top",
+        "typeId": 1,
+        "dateCreated": "10/20/2023",
+        "mymeasurements": {
+            "A" : 38.5,
+            "B" : 30,
+            "C" : 43,
+            "D" : 45.5,
+            "E" : 14,
+            "F" : 13,
+            "G" : 15,
+            "H" : 16,
+            "I" : 17,
+            "J" : 3.75,
+            "K" : 15,
+            "L" : 18.25,
+            "M" : 13,
+            "N" : 8.25,
+            "O" : 23.5,
+            "P" : 15.5,
+            "Q" : 12.5,
+            "R" : 10,
+            "S" : 6.25
+        }
+    },
+    {
+        "id": 2,
+        "name": "Client 1",
+        "type": "top",
+        "typeId":1,
+        "dateCreated": "08/19/2024",
+        "mymeasurements": {
+            "A" : 38.5,
+            "B" : 30,
+            "C" : 43,
+            "D" : 45.5,
+            "E" : 14,
+            "F" : 13,
+            "G" : 15,
+            "H" : 16,
+            "I" : 17,
+            "J" : 3.75,
+            "K" : 15,
+            "L" : 18.25,
+            "M" : 13,
+            "N" : 8.25,
+            "O" : 23.5,
+            "P" : 15.5,
+            "Q" : 12.5,
+            "R" : 10,
+            "S" : 6.25
+        }
+    }
+]
+
+
+}
+
