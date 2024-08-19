@@ -18,6 +18,7 @@ function MeasurementForm({id}){
     if (!patternObject.type){
         return <h1>Loading...</h1>
     }
+    //test
 
     function handleSubmit(event){
         event.preventDefault()
