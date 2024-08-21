@@ -3,7 +3,6 @@ import App from "./App"
 import MyMeasurements from "./pages/MyMeasurements"
 import PatternPage from "./pages/PatternPage"
 import ErrorPage from "./pages/ErrorPage"
-import Canvas from "./components/Canvas"
 
 const routes = [
     {
@@ -23,7 +22,6 @@ const routes = [
             path: "/pattern/:id",
             element:<PatternPage/>
         }
-       
      ]
     }
 ]

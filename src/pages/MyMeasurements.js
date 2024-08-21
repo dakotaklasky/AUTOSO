@@ -1,26 +1,28 @@
-import {useEffect,useState} from 'react';
-import {Link} from "react-router-dom"
+import {useEffect} from 'react';
+import {Link, useOutletContext} from "react-router-dom"
 
 function MyMeasurements(){
 
-    const [savedMeasurements, setSavedMeasurements] = useState([])
+    const [handleAddMeasurement, handleMeasurementUpdate, savedMeasurements,setSavedMeasurements, onDelete] = useOutletContext()
 
-    //needs to run everytime we add a new element to saved measurements
-    //need a different state for that?
-    useEffect(() =>{
-        fetch("http://localhost:3500/measurements")
-        .then(data => data.json())
-        .then(json => setSavedMeasurements(json))
-    },[])
-
+    function handleDelete(savedObject){
+        console.log(savedObject)
+        fetch(`http://localhost:3500/measurements/${savedObject.id}`,{
+            method:"DELETE",
+          })
+          .then(response => response.json())
+          .then(() => onDelete(savedObject))
+    }
 
     const rowElements = savedMeasurements.map(savedObject =>{
+        //is this constantly refreshing??
         return(
             <tr key={savedObject.id}>
                 <td>{savedObject.name}</td>
                 <td>{savedObject.type}</td>
                 <td>{savedObject.dateCreated}</td>
-                <td><Link to={`/pattern/${savedObject.typeId}`}>View Pattern</Link></td>
+                <td><Link to={ `/pattern/${savedObject.typeId}`} state={savedObject.mymeasurements}>View Measurements</Link></td>
+                <td onClick={() => handleDelete(savedObject)}>Remove</td>
             </tr>
         )
     })
@@ -34,17 +36,14 @@ function MyMeasurements(){
                         <th scope="col">Name</th>
                         <th scope="col">Type</th>
                         <th scope="col">Date Created</th>
-                        <th scope="col">View Pattern</th>
+                        <th scope="col">View Measurements</th>
+                        <th scrope="col">Delete</th>
                     </tr>
                 </thead>
             <tbody>
                 {rowElements}
             </tbody>
-
-            </table>
-       
-          
-            
+            </table> 
         </>
     )
 }

@@ -1,7 +1,5 @@
-import {useParams} from "react-router-dom"
+import {useParams,useLocation} from "react-router-dom"
 import MeasurementForm from "../components/MeasurementForm.js"
-import Canvas from "../components/Canvas.js"
-import { Outlet } from "react-router-dom"
 
 
 function PatternPage(){
@@ -9,10 +7,12 @@ function PatternPage(){
     const params = useParams()
     const patternId = params.id
 
+    const location = useLocation()
+    const measurements = location.state
+
     return (
         <div>
-            <MeasurementForm id={patternId} />
-            <Outlet id={patternId}/>
+            <MeasurementForm id={patternId} measurements={measurements}/>
         </div>
     )
     

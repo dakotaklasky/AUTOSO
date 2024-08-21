@@ -11,3 +11,54 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+
+.navBar{
+  text-align: center;
+  font-family: runway;
+}
+
+.navBar > a{
+  display: inline-block;
+  box-sizing: border-box;
+  /* width: 70px; */
+  padding: 10px;
+  margin: 0 6px 6px;
+  background: rgb(194, 148, 216);
+  text-decoration: none;
+  text-align: center;
+  font-size: min(10vw, 15px) ;
+  color: black;
+  font-weight:bold;
+  border-radius: 25px;
+}
+
+.title{
+  text-align: center;
+}
+
+.patternDetails{
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+html{
+  background-image: url("https://media.istockphoto.com/id/940236760/photo/catwalk-runway-show-event.jpg?s=612x612&w=0&k=20&c=xhluwJbXAmKVwoffVEk8JlfWfsIpTpTNlRtlwXcnV4Y=");
+  background-size: 50vw 50vh;
+
+}
+
+@font-face{
+  font-family: runway;
+  src: url(../public/Vogue.ttf);
+  
+}
+
+.home-title{
+  text-align: center;
+  font-size: 100px;
+  font-family: runway;
+}
+
+

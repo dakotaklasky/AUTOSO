@@ -1,32 +1,8 @@
 import React,{useRef,useEffect} from 'react'
 
-function Canvas({typeId}){
+function Canvas({typeId,measurements}){
   
-    function drawTop(ctx){
-        //measurements
-        const measurements = {
-          A : Number(38.5),
-          B : Number(30),
-          C : Number(43),
-          D : Number(45.5),
-          E : Number(14),
-          F : Number(13),
-          G : Number(15),
-          H : Number(16),
-          I : Number(17),
-          J : Number(3.75),
-          K : Number(15),
-          L : Number(18.25),
-          M : Number(13),
-          N : Number(8.25),
-          O : Number(23.5),
-          P : Number(15.5),
-          Q : Number(12.5),
-          R : Number(10),
-          S : Number(6.25)
-        }
-    
-        const multiplier = 35        
+    function drawBackTop(ctx, multiplier){       
         const xLine3 = Number(measurements.L/2+0.5)
         const xLine1 = Number(xLine3-measurements.K/2-(3/8))
         const xLine2 = Number(xLine1 + Math.sqrt(Math.pow(measurements.J,2)-4))
@@ -35,6 +11,7 @@ function Canvas({typeId}){
         const yLine1 = Number(measurements.I/2 + 1.25)
         const yLine2 = Number((0.75*measurements.I)-(0.5*measurements.G)+0.625)
         
+        ctx.beginPath()
           ctx.moveTo(0, yLine1*multiplier);  //armhole
           ctx.lineTo(xLine1*multiplier,yLine2*multiplier)
           ctx.lineTo(xLine1*multiplier,2*multiplier)
@@ -65,26 +42,54 @@ function Canvas({typeId}){
             ctx.arc(100, 75, 50, 0, 2 * Math.PI);
             ctx.stroke();
         }
+    
+    function drawFrontSkirt(ctx, multiplier){
+        ctx.beginPath()
+        ctx.moveTo(0,((measurements.B/4)+1)*multiplier)
+        ctx.lineTo(7.125*multiplier,2*multiplier)
+        ctx.lineTo(23.875*multiplier,0)
+        ctx.lineTo(24.625*multiplier,(measurements.D/8 + 1.25)*multiplier)
+        ctx.lineTo(24.625*multiplier,((measurements.D/4)+2.5)*multiplier)
+        ctx.lineTo(0.625*multiplier,((measurements.D/4)+2.5)*multiplier)
+
+        ctx.lineTo(0.625*multiplier, ((measurements.D/8)+2+(measurements.B/8))*multiplier)
+        ctx.lineTo(4.625*multiplier,((measurements.D/8)+1.75+(measurements.B/8))*multiplier)
+        ctx.lineTo(0.625*multiplier,((measurements.D/8)+1.5+(measurements.B/8))*multiplier)
+        ctx.lineTo(0.625*multiplier, ((measurements.D/8)+2+(measurements.B/8))*multiplier)
+        ctx.lineTo(0,((measurements.B/4)+1)*multiplier)
+        ctx.stroke()
+    }
    
 
-    const canvasRef = useRef(null) // get dom element in order to get its context object so we can draw in canvas
+    const canvasRef = useRef(null) // declare reference to canvas dom element and set its value to null
 
     let draw;
 
     if(typeId === "1"){
-        draw = drawTop
+        draw = drawBackTop
     }
-    else(
+    else if(typeId === "2"){
         draw = drawPants
-    )
+    }
+    else if(typeId === "3"){
+        draw = drawFrontSkirt
+    }
+        
+    
+
+    function clearCanvas(canvas, context){
+        context.clearRect(0, 0, canvas.width, canvas.height);
+    }
 
     useEffect(() => {
-        const canvas = canvasRef.current
-        const context = canvas.getContext('2d')
-        draw(context)
-    }, [draw])    
+        const canvas = canvasRef.current //return the current value of the canvas ref aka null
+        const context = canvas.getContext('2d') //need to create 2d context object to draw in the canvas (getcontext returns an object with methods for drawing)
+        clearCanvas(canvas,context)
+        draw(context, 35)
+    })    
 
     return <canvas ref={canvasRef} width = '1000' height= '1000' />
 }
 
 export default Canvas;
+
