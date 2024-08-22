@@ -26,20 +26,6 @@
       }
     },
     {
-      "id": "2",
-      "type": "Pants",
-      "measurements": {
-        "B": "Waist Circumference at natural bend",
-        "C": "High Hip/Abdomen Circumference 4in below waist",
-        "D": "High Hip Circumference at fullest part ",
-        "T": "Outseam waist to ankle",
-        "U": "Inseam crotch to ankle",
-        "V": "Crotch Depth, seated, waist to chair",
-        "W": "Thigh Circumference",
-        "X": "Ankle Circumference"
-      }
-    },
-    {
       "id": "3",
       "type": "Skirt",
       "measurements": {
@@ -339,9 +325,9 @@
       "name": "Dakota skirt",
       "type": "Skirt",
       "typeId": "3",
-      "dateCreated": "8/21/2024",
+      "dateCreated": "8/22/2024",
       "mymeasurements": {
-        "B": "35",
+        "B": "30",
         "D": "39"
       }
     },

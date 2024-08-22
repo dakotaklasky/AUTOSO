@@ -18,8 +18,11 @@ function Home(){
     return (
         <>
             <h1 className="home-title">AUTOSO</h1>
-            <h2>Choose a pattern type to get started</h2>
-            {patternButtons}
+            <h2 className="intro">Choose a pattern type to get started</h2>
+            <div className="button-container">
+                {patternButtons}
+            </div>
+            
         </>
     )
 }

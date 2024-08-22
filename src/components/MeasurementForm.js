@@ -142,7 +142,7 @@ function MeasurementForm({id,measurements}){
                     <label htmlFor={"Name"}>Name</label>
                     <input type="text" name={"Name"}></input><br/><br/>
                     {formElements}
-                    <input type="submit" value="Save and Display Pattern"></input>
+                    <input type="submit" value="Save and Display Pattern" className = "save-button"></input>
                 </form>
                 {isSubmitted? <Canvas typeId={id} measurements={submittedFormMeasurements} className="canvas"></Canvas>: <></>}
             </div>

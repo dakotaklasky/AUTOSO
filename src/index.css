@@ -44,8 +44,8 @@ code {
 }
 
 html{
-  background-image: url("https://media.istockphoto.com/id/940236760/photo/catwalk-runway-show-event.jpg?s=612x612&w=0&k=20&c=xhluwJbXAmKVwoffVEk8JlfWfsIpTpTNlRtlwXcnV4Y=");
-  background-size: 50vw 50vh;
+  /* background-image: url("https://media.istockphoto.com/id/940236760/photo/catwalk-runway-show-event.jpg?s=612x612&w=0&k=20&c=xhluwJbXAmKVwoffVEk8JlfWfsIpTpTNlRtlwXcnV4Y=");
+  background-size: 100vw 100vh; */
 
 }
 
@@ -59,6 +59,45 @@ html{
   text-align: center;
   font-size: 100px;
   font-family: runway;
+}
+
+.pattern-buttons{
+  display: inline-block;
+  box-sizing: border-box;
+  /* width: 70px; */
+  padding: 10px;
+  margin: 0 6px 6px;
+  background: rgb(194, 148, 216);
+  text-decoration: none;
+  text-align: center;
+  font-size: min(15vw, 20px) ;
+  color: black;
+  font-weight:bold;
+  border-radius: 25px;
+}
+
+.intro{
+  font-family: runway;
+  text-align: center;
+}
+
+.button-container{
+  text-align: center;
+}
+
+.save-button{
+  display: inline-block;
+  box-sizing: border-box;
+  /* width: 70px; */
+  padding: 10px;
+  margin: 0 6px 6px;
+  background: rgb(194, 148, 216);
+  text-decoration: none;
+  text-align: center;
+  font-size: min(10vw, 15px) ;
+  color: black;
+  font-weight:bold;
+  border-radius: 25px;
 }
 
 
