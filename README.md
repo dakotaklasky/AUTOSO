@@ -6,20 +6,20 @@ This project will give you the tools to sew your own garments completely customi
 
 - Home Page
 
-        • Select which pattern you are interested in
+    • Select which pattern you are interested in
 
 - Pattern Page
 
-        • Enter your measurements into the form
+    • Enter your measurements into the form
 
-        • Select Save and Display pattern to see your pattern!
+    • Select Save and Display pattern to see your pattern!
 
 - My Measurements
 
     • View all of your saved Patterns
 
     • View measurements from old patterns
-    
+
     • Remove any patterns you no longer need
 
 
