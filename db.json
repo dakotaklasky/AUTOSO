@@ -40,60 +40,10 @@
       "name": "Client 1",
       "type": "top",
       "typeId": 1,
-      "dateCreated": "8/21/2024",
+      "dateCreated": "8/22/2024",
       "mymeasurements": {
-        "A": "1",
-        "B": "1",
-        "C": "1",
-        "D": "1",
-        "E": "1",
-        "F": "1",
-        "G": "1",
-        "H": "1",
-        "I": "1",
-        "J": "1",
-        "K": "1",
-        "L": "1",
-        "M": "1",
-        "N": "1",
-        "O": "1",
-        "P": "1",
-        "Q": "1",
-        "R": "1",
-        "S": "1"
-      }
-    },
-    {
-      "id": "9b49bd93-4e69-46f8-b7ee-65bddd535719",
-      "name": "test",
-      "type": "top",
-      "typeId": "1",
-      "dateCreated": "8/21/2024",
-      "mymeasurements": {
-        "B": "35",
-        "D": "39"
-      }
-    },
-    {
-      "id": "5633855a-c240-4a02-b9ae-0393dcecf79f",
-      "name": "test1",
-      "type": "top",
-      "typeId": "1",
-      "dateCreated": "8/21/2024",
-      "mymeasurements": {
-        "B": "35",
-        "D": "39"
-      }
-    },
-    {
-      "id": "72e128c3-049e-44d8-a472-617238e6dd2e",
-      "name": "test2",
-      "type": "top",
-      "typeId": "1",
-      "dateCreated": "8/20/2024",
-      "mymeasurements": {
-        "A": "50",
-        "B": 30,
+        "A": 38.5,
+        "B": "50",
         "C": 43,
         "D": 45.5,
         "E": 14,
@@ -146,9 +96,9 @@
       "name": "mine",
       "type": "top",
       "typeId": "1",
-      "dateCreated": "8/21/2024",
+      "dateCreated": "11/14/2024",
       "mymeasurements": {
-        "A": 38.5,
+        "A": "37",
         "B": 30,
         "C": 43,
         "D": 45.5,
@@ -340,6 +290,106 @@
       "mymeasurements": {
         "B": "39",
         "D": "39"
+      }
+    },
+    {
+      "id": "4e1b9677-e740-4f23-afa4-886e52435ba2",
+      "name": "my skirt",
+      "type": "Skirt",
+      "typeId": "3",
+      "dateCreated": "8/22/2024",
+      "mymeasurements": {
+        "B": "25",
+        "D": "34"
+      }
+    },
+    {
+      "id": "aed89327-2100-489b-b501-30c6766d3dad",
+      "name": "tester",
+      "type": "Skirt",
+      "typeId": "3",
+      "dateCreated": "11/14/2024",
+      "mymeasurements": {
+        "B": "30",
+        "D": "40"
+      }
+    },
+    {
+      "id": "807eb4ef-0dcb-4048-8440-4e6880c956fc",
+      "name": "dakota1",
+      "type": "Top",
+      "typeId": "1",
+      "dateCreated": "11/14/2024",
+      "mymeasurements": {
+        "A": 38.5,
+        "B": 30,
+        "C": 43,
+        "D": 45.5,
+        "E": 14,
+        "F": 13,
+        "G": 15,
+        "H": 16,
+        "I": 17,
+        "J": 3.75,
+        "K": 15,
+        "L": 18.25,
+        "M": 13,
+        "N": 8.25,
+        "O": 23.5,
+        "P": 15.5,
+        "Q": 12.5,
+        "R": 10,
+        "S": 6.25
+      }
+    },
+    {
+      "id": "4a0e9f23-9875-47c9-b128-7ffaa2b0b530",
+      "name": "tt",
+      "type": "Top",
+      "typeId": "1",
+      "dateCreated": "11/14/2024",
+      "mymeasurements": {
+        "A": "100",
+        "B": "1",
+        "C": "1",
+        "D": "1",
+        "E": "1",
+        "F": "1",
+        "G": "1",
+        "H": "1",
+        "I": "1",
+        "J": "1",
+        "K": "300",
+        "L": "1",
+        "M": "1",
+        "N": "1",
+        "O": "1",
+        "P": "1",
+        "Q": "1",
+        "R": "1",
+        "S": "1"
+      }
+    },
+    {
+      "id": "784a4987-013d-4b5a-8a4f-d09dab841071",
+      "name": "testing123",
+      "type": "Skirt",
+      "typeId": "3",
+      "dateCreated": "11/14/2024",
+      "mymeasurements": {
+        "B": "30",
+        "D": "40"
+      }
+    },
+    {
+      "id": "23e496de-4905-4f89-9307-013cc8d2f896",
+      "name": "test5",
+      "type": "Skirt",
+      "typeId": "3",
+      "dateCreated": "11/14/2024",
+      "mymeasurements": {
+        "B": "30",
+        "D": "40"
       }
     }
   ]

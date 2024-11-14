@@ -86,9 +86,36 @@ function Canvas({typeId,measurements}){
         const context = canvas.getContext('2d') //need to create 2d context object to draw in the canvas (getcontext returns an object with methods for drawing)
         clearCanvas(canvas,context)
         draw(context, 35)
-    })    
+    })
 
-    return <canvas ref={canvasRef} width = '1000' height= '1000' />
+    function printCanvas(canvasRef){
+        const canvas = canvasRef.current
+        if (!canvas) {
+            console.error("Canvas element not found");
+            return;
+        }
+
+        const dataUrl = canvas.toDataURL("image/png")
+        const printWindow = window.open("","_blank")
+        printWindow.document.write(`
+            <html>
+                <head>
+                    <title>Print Canvas</title>
+                </head>
+                <body onload="window.print(); window.close();">
+                    <img src="${dataUrl}" />
+                </body>
+            </html>
+        `)
+        printWindow.document.close();
+    }
+
+    return (
+        <div>
+        <canvas ref={canvasRef} width = '1000' height= '1000' />
+        <button onClick = {() => printCanvas(canvasRef)}>Print Canvas</button>
+        </div>
+    )
 }
 
 export default Canvas;

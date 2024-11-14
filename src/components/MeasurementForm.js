@@ -128,7 +128,7 @@ function MeasurementForm({id,measurements}){
         return( 
             <div key={index}>
                 <label htmlFor={key}>{measurementValues[index]}</label>
-                <input type="text" name={key} onChange={handleChange} value={formMeasurements[key]}></input><br/> 
+                <input type="text" name={key} onChange={handleChange} value={formMeasurements[key] || ""}></input><br/> 
             </div>
         )
     })

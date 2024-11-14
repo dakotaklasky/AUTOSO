@@ -50,16 +50,16 @@ function App() {
   }
 
   return (
-    <html>
-      <div class="bg-image"></div>
+    <div>
+      <div className="bg-image"></div>
         <header className="myheader">
           <br></br>
           <NavBar/>
         </header>
-        <body className="mybody">
+        <div className="mybody">
           <Outlet context={[handleAddMeasurement,handleMeasurementUpdate,savedMeasurements, setSavedMeasurements, onDelete]}/>
-        </body>
-    </html>
+        </div>
+    </div>
 
     
   );
