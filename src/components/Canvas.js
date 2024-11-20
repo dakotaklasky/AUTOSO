@@ -1,7 +1,10 @@
 import React,{useRef,useEffect} from 'react'
 
 function Canvas({typeId,measurements}){
-  
+    const INCHES_TO_PIXELS = 96; // 96 pixels per inch for printing purposes
+    const canvasWidthInInches = 8; // Target width in inches for the printed canvas
+    const canvasHeightInInches = 10; // Target height in inches for the printed canvas
+
     function drawBackTop(ctx, multiplier){       
         const xLine3 = Number(measurements.L/2+0.5)
         const xLine1 = Number(xLine3-measurements.K/2-(3/8))
@@ -36,13 +39,6 @@ function Canvas({typeId,measurements}){
           //add curves
       }
     
-   
-    function drawPants(ctx){
-            ctx.beginPath();
-            ctx.arc(100, 75, 50, 0, 2 * Math.PI);
-            ctx.stroke();
-        }
-    
     function drawFrontSkirt(ctx, multiplier){
         ctx.beginPath()
         ctx.moveTo(0,((measurements.B/4)+1)*multiplier)
@@ -60,23 +56,16 @@ function Canvas({typeId,measurements}){
         ctx.stroke()
     }
    
-
     const canvasRef = useRef(null) // declare reference to canvas dom element and set its value to null
-
     let draw;
 
     if(typeId === "1"){
         draw = drawBackTop
     }
-    else if(typeId === "2"){
-        draw = drawPants
-    }
     else if(typeId === "3"){
         draw = drawFrontSkirt
     }
         
-    
-
     function clearCanvas(canvas, context){
         context.clearRect(0, 0, canvas.width, canvas.height);
     }
@@ -84,8 +73,16 @@ function Canvas({typeId,measurements}){
     useEffect(() => {
         const canvas = canvasRef.current //return the current value of the canvas ref aka null
         const context = canvas.getContext('2d') //need to create 2d context object to draw in the canvas (getcontext returns an object with methods for drawing)
+
+        // Set canvas dimensions based on the target print size in inches
+        canvas.width = canvasWidthInInches * INCHES_TO_PIXELS;
+        canvas.height = canvasHeightInInches * INCHES_TO_PIXELS;
+
+        // Scale the context so 1 unit in the drawing is 1 inch
+        context.scale(INCHES_TO_PIXELS, INCHES_TO_PIXELS);
+
         clearCanvas(canvas,context)
-        draw(context, 35)
+        draw(context, 1)
     })
 
     function printCanvas(canvasRef){
@@ -112,7 +109,7 @@ function Canvas({typeId,measurements}){
 
     return (
         <div>
-        <canvas ref={canvasRef} width = '1000' height= '1000' />
+        <canvas ref={canvasRef} style={{ width: '400px', height: '500px' }} />
         <button onClick = {() => printCanvas(canvasRef)}>Print Canvas</button>
         </div>
     )

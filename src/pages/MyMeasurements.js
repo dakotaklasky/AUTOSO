@@ -1,6 +1,7 @@
 import {useEffect} from 'react';
 import {Link, useOutletContext} from "react-router-dom"
 
+//display all measurements currently saved in database with option to delete
 function MyMeasurements(){
 
     const [handleAddMeasurement, handleMeasurementUpdate, savedMeasurements,setSavedMeasurements, onDelete] = useOutletContext()
@@ -15,7 +16,6 @@ function MyMeasurements(){
     }
 
     const rowElements = savedMeasurements.map(savedObject =>{
-        //is this constantly refreshing??
         return(
             <tr key={savedObject.id}>
                 <td>{savedObject.name}</td>

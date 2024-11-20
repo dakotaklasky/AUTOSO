@@ -29,26 +29,18 @@ function MeasurementForm({id,measurements}){
     //format current date
     function currentDate(){
         const date = new Date();
-
         let day = date.getDate();
         let month = date.getMonth() + 1;
         let year = date.getFullYear();
-       
         let currentDate = `${month}/${day}/${year}`;
         return currentDate; 
     }
 
-
     //when form is submitted
     function handleSubmit(event){
-
-        
         event.preventDefault()
 
-        //perfom these only when the input name is not blank and if the input name is the same after they confirm ok
-
-
-        //if name is not blank
+        //perfom only when the input name is not blank
         if(event.target.Name.value !== ""){
 
             const newMeasurementObject = {
@@ -65,7 +57,6 @@ function MeasurementForm({id,measurements}){
                 let result = window.confirm(`Do you want to override ${newMeasurementObject.name} ?`)
                 // if user wants to override name then patch
                 if(result){
-
                     setSubmittedFormMeasurements(formMeasurements)
                     setIsSubmitted(true)
 
@@ -89,8 +80,8 @@ function MeasurementForm({id,measurements}){
                     alert("Please input new name")
                 }
             }
+            //create new measurement data
             else{
-
                 setSubmittedFormMeasurements(formMeasurements)
                 setIsSubmitted(true)
 
@@ -110,7 +101,6 @@ function MeasurementForm({id,measurements}){
             setIsSubmitted(false)
             alert("Pleast input name")
         }
-
     }
            
     if (!patternObject.type){
@@ -132,7 +122,6 @@ function MeasurementForm({id,measurements}){
             </div>
         )
     })
-
 
     return (
         <div className="container">

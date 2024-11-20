@@ -10,14 +10,12 @@ import {useState, useEffect} from 'react'
 //  
 //Component Structure:
 //NavBar
-//  My Measurements (currently a page, maybe needs seperate component)
+//  My Measurements 
 //  PatternType
 //    MeasurementForm
 //    Canvas
 
-
 function App() {
-
   const [savedMeasurements, setSavedMeasurements] = useState([])
 
   useEffect(() =>{
@@ -57,12 +55,13 @@ function App() {
           <NavBar/>
         </header>
         <div className="mybody">
+          {/* render child elements Home, MyMeasurements, PatternPage */}
+          {/* context gets passed to MyMeasurements to ensure measurement data is 
+          getting updated properly in database and to display to user */}
           <Outlet context={[handleAddMeasurement,handleMeasurementUpdate,savedMeasurements, setSavedMeasurements, onDelete]}/>
         </div>
-    </div>
-
-    
-  );
+    </div>  
+  )
 }
 
 export default App;
