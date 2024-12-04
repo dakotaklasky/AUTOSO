@@ -89,4 +89,18 @@ code {
   border-radius: 25px;
 }
 
+.print-button{
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 10px;
+  margin: 0 6px 6px;
+  background: rgb(194, 148, 216);
+  text-decoration: none;
+  text-align: center;
+  font-size: min(10vw, 15px) ;
+  color: black;
+  font-weight:bold;
+  border-radius: 25px;
+}
+
 
