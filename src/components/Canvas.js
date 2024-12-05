@@ -75,7 +75,7 @@ function Canvas({typeId,measurements}){
         const context = canvas.getContext('2d') //need to create 2d context object to draw in the canvas (getcontext returns an object with methods for drawing)
 
         // Set canvas dimensions based on the target print size in inches
-        canvas.width = canvasWidthInInches * INCHES_TO_PIXELS;
+        canvas.width = (canvasWidthInInches + 1) * INCHES_TO_PIXELS;
         canvas.height = canvasHeightInInches * INCHES_TO_PIXELS;
 
         const scaleFactor = 0.25
@@ -90,41 +90,95 @@ function Canvas({typeId,measurements}){
         draw(context, 1)
     }, [draw, measurements, typeId, canvasHeightInInches, canvasWidthInInches])
 
+    // function printCanvas(canvasRef){
+    //     const canvas = canvasRef.current
+    //     if (!canvas) {
+    //         console.error("Canvas element not found");
+    //         return;
+    //     }
 
-    // function exportPages(canvas, dpi = 300, pageWidthInInches = 8.5, pageHeightInInches = 11) {
-    //     const pageWidth = pageWidthInInches * dpi;
-    //     const pageHeight = pageHeightInInches * dpi;
+    //     const dataUrl = canvas.toDataURL("image/png")
+    //     const img = new Image()
+    //     img.src = dataUrl
+
+    //     const printWindow = window.open('', '', `width=${canvas.width},height=${canvas.height}`);
+
+    //     printWindow.document.write(`
+    //         <html>
+    //             <head>
+    //                 <title>Print Canvas</title>
+
+    //             </head>
+    //             <body style="text-align: center;" onload="window.print(); window.close();">
+    //                 <img src="${dataUrl}" style="width: 10200px; height:13200px;" />
+    // //             </body>
+    // //         </html>
+    // //     `);
+    // //     printWindow.document.close();
+    // // }
+
+    // function printTiledCanvas(canvasRef) {
+    //     const canvas = canvasRef.current;
+    //     if (!canvas) {
+    //         console.error("Canvas element not found");
+    //         return;
+    //     }
     
-    //     const pages = [];
+    //     const dpi = 300; // DPI for printing
+    //     const pageWidthInInches = 8.5; // Width of a printed page in inches
+    //     const pageHeightInInches = 11; // Height of a printed page in inches
+    
+    //     const pageWidth = pageWidthInInches * dpi; // Width in pixels
+    //     const pageHeight = pageHeightInInches * dpi; // Height in pixels
+    
+    //     // Generate tiles
+    //     const tiles = [];
     //     for (let y = 0; y < canvas.height; y += pageHeight) {
     //         for (let x = 0; x < canvas.width; x += pageWidth) {
-    //             const pageCanvas = document.createElement("canvas");
-    //             pageCanvas.width = pageWidth;
-    //             pageCanvas.height = pageHeight;
+    //             const tileCanvas = document.createElement("canvas");
+    //             tileCanvas.width = pageWidth;
+    //             tileCanvas.height = pageHeight;
     
-    //             const pageCtx = pageCanvas.getContext("2d");
-    //             pageCtx.drawImage(
+    //             const tileCtx = tileCanvas.getContext("2d");
+    
+    //             console.log(`Drawing tile at x: ${x}, y: ${y}, width: ${pageWidth}, height: ${pageHeight}`);
+    //             tileCtx.drawImage(
     //                 canvas,
     //                 x, y, pageWidth, pageHeight, // Source rectangle
     //                 0, 0, pageWidth, pageHeight  // Destination rectangle
     //             );
     
-    //             pages.push(pageCanvas.toDataURL("image/png"));
+    //             tiles.push(tileCanvas.toDataURL("image/png"));
     //         }
     //     }
-    //     return pages;
-    // }
-
-    // function printAllPages(canvasRef) {
-    //     const canvas = canvasRef.current;
-    //     if (!canvas) {
-    //         console.error("Canvas not found");
+    
+    //     // Render the tiles for debugging
+    //     const debugWindow = window.open("", "_blank");
+    //     if (!debugWindow) {
+    //         console.error("Failed to open a new window for debugging");
     //         return;
     //     }
     
-    //     const pages = exportPages(canvas); // Generate all page images
+    //     debugWindow.document.write(`
+    //         <html>
+    //             <head>
+    //                 <title>Debug Canvas Tiles</title>
+    //                 <style>
+    //                     body { margin: 0; padding: 0; display: flex; flex-wrap: wrap; }
+    //                     img { margin: 5px; border: 1px solid black; }
+    //                 </style>
+    //             </head>
+    //             <body>
+    //                 ${tiles
+    //                     .map((tile, index) => `<img src="${tile}" alt="Tile ${index + 1}" />`)
+    //                     .join("")}
+    //             </body>
+    //         </html>
+    //     `);
     
-    //     // Create a single HTML document with all the pages
+    //     debugWindow.document.close();
+    
+    //     // Optionally, print the tiles
     //     const printWindow = window.open("", "_blank");
     //     if (!printWindow) {
     //         console.error("Failed to open a new window for printing");
@@ -134,12 +188,12 @@ function Canvas({typeId,measurements}){
     //     printWindow.document.write(`
     //         <html>
     //             <head>
-    //                 <title>Print All Pages</title>
+    //                 <title>Print Canvas Tiles</title>
     //                 <style>
     //                     body { margin: 0; padding: 0; }
     //                     .page {
-    //                         width: 8.5in;
-    //                         height: 11in;
+    //                         width: ${pageWidthInInches}in;
+    //                         height: ${pageHeightInInches}in;
     //                         page-break-after: always;
     //                         display: flex;
     //                         align-items: center;
@@ -149,83 +203,105 @@ function Canvas({typeId,measurements}){
     //                 </style>
     //             </head>
     //             <body>
-    //                 ${pages
+    //                 ${tiles
     //                     .map(
-    //                         (page, index) =>
-    //                             `<div class="page"><img src="${page}" alt="Page ${index + 1}" /></div>`
+    //                         (tile, index) =>
+    //                             `<div class="page"><img src="${tile}" alt="Tile ${index + 1}" /></div>`
     //                     )
     //                     .join("")}
     //             </body>
     //         </html>
     //     `);
     
-    //     printWindow.document.close(); // Close the document to apply styles
-    //     printWindow.focus(); // Focus on the new window
-    //     printWindow.print(); // Trigger the print dialog
-    // }
-
-    // function printCanvas(canvasRef){
-    //     const canvas = canvasRef.current
-    //     if (!canvas) {
-    //         console.error("Canvas element not found");
-    //         return;
-    //     }
-
-    //     const dataUrl = canvas.toDataURL("image/png")
-    //     const printWindow = window.open("","_blank")
-    //     printWindow.document.write(`
-    //         <html>
-    //             <head>
-    //                 <title>Print Canvas</title>
-    //             </head>
-    //             <body onload="window.print(); window.close();">
-    //                 <img src="${dataUrl}" />
-    //             </body>
-    //         </html>
-    //     `)
     //     printWindow.document.close();
+    //     printWindow.focus();
+    //     printWindow.print();
     // }
 
-    function printCanvas(canvasRef){
-        const canvas = canvasRef.current
+    function printTiledCanvas(canvasRef) {
+        const canvas = canvasRef.current;
         if (!canvas) {
             console.error("Canvas element not found");
             return;
         }
-
-        const dataUrl = canvas.toDataURL("image/png")
-        const img = new Image()
-        img.src = dataUrl
-
-        const printWindow = window.open("","_blank")
+    
+        const dpi = 300; // DPI for printing
+        const pageWidthInInches = 8.5; // Width of a printed page in inches
+        const pageHeightInInches = 11; // Height of a printed page in inches
+    
+        const pageWidth = pageWidthInInches * dpi; // Width in pixels
+        const pageHeight = pageHeightInInches * dpi; // Height in pixels
+    
+        // Generate tiles
+        const tiles = [];
+        for (let y = 0; y < canvas.height; y += pageHeight) {
+            for (let x = 0; x < canvas.width; x += pageWidth) {
+                const tileCanvas = document.createElement("canvas");
+                tileCanvas.width = pageWidth;
+                tileCanvas.height = pageHeight;
+    
+                const tileCtx = tileCanvas.getContext("2d");
+    
+                console.log(`Drawing tile at x: ${x}, y: ${y}, width: ${pageWidth}, height: ${pageHeight}`);
+                tileCtx.drawImage(
+                    canvas,
+                    x, y, pageWidth, pageHeight, // Source rectangle
+                    0, 0, pageWidth, pageHeight  // Destination rectangle
+                );
+    
+                tiles.push(tileCanvas.toDataURL("image/png"));
+            }
+        }
+    
+        // Render the tiles for printing in a print-friendly format
+        const printWindow = window.open("", "_blank");
+        if (!printWindow) {
+            console.error("Failed to open a new window for printing");
+            return;
+        }
+    
+        // Prepare the print window content
         printWindow.document.write(`
-                    <html>
-                        <head>
-                            <title>Print Canvas</title>
-                        </head>
-                        <body onload="window.print(); window.close();">
-                            <img src="${dataUrl}" />
-                        </body>
-                    </html>
-                `)
+            <html>
+                <head>
+                    <title>Print Canvas Tiles</title>
+                    <style>
+                        body { margin: 0; padding: 0; }
+                        .page {
+                            width: ${pageWidthInInches}in;
+                            height: ${pageHeightInInches}in;
+                            page-break-after: always;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                        }
+                        img {
+                            width: 100%;
+                            height: auto;
+                        }
+                    </style>
+                </head>
+                <body>
+                    ${tiles
+                        .map(
+                            (tile, index) =>
+                                `<div class="page"><img src="${tile}" alt="Tile ${index + 1}" /></div>`
+                        )
+                        .join("")}
+                </body>
+            </html>
+        `);
+    
         printWindow.document.close();
-
-        // img.onload = function(){
-        //     const printWindow = window.open("","_blank")
-        //     printWindow.document.write(`
-        //                 <html>
-        //                     <body>
-        //                         <img src="${dataUrl}" />
-        //                     </body>
-        //                 </html>
-        //             `)
-        //     printWindow.document.close()
-        // }
+        printWindow.focus(); // Focus on the new window
+        printWindow.print(); // Trigger the print dialog
     }
+    
+    
 
     return (
         <div>
-        <button className="print-button" onClick = {() => printCanvas(canvasRef)}>Print Canvas</button>
+        <button className="print-button" onClick = {() => printTiledCanvas(canvasRef)}>Print Canvas</button>
         <canvas ref={canvasRef}/>
         </div>
     )
