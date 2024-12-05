@@ -5,7 +5,7 @@ function Canvas({typeId,measurements}){
     const canvasWidthInInches = 8.5*4; // Target width in inches for the printed canvas
     const canvasHeightInInches = 11*4; // Target height in inches for the printed canvas
 
-    function drawBackTop(ctx, multiplier){       
+    function drawBackTop(ctx){       
         const xLine3 = Number(measurements.L/2+0.5)
         const xLine1 = Number(xLine3-measurements.K/2-(3/8))
         const xLine2 = Number(xLine1 + Math.sqrt(Math.pow(measurements.J,2)-4))
@@ -15,44 +15,44 @@ function Canvas({typeId,measurements}){
         const yLine2 = Number((0.75*measurements.I)-(0.5*measurements.G)+0.625)
         
         ctx.beginPath()
-          ctx.moveTo(0, yLine1*multiplier);  //armhole
-          ctx.lineTo(xLine1*multiplier,yLine2*multiplier)
-          ctx.lineTo(xLine1*multiplier,2*multiplier)
-          ctx.lineTo(xLine2*multiplier,0) //shoulder 2
-          ctx.lineTo(xLine3*multiplier,(measurements.I-measurements.G)*multiplier) //back center (curve)
-          ctx.lineTo(xLine3*multiplier,measurements.I*multiplier) //waist center
-          ctx.moveTo(xLine4*multiplier,yLine1*multiplier) //dart point
-          ctx.lineTo((xLine4+0.75)*multiplier,measurements.I*multiplier) //right dart bottom
-          ctx.moveTo(xLine4*multiplier,yLine1*multiplier) //dart point
-          ctx.lineTo((xLine4-0.75)*multiplier,measurements.I*multiplier) //left dart bottom
-          ctx.moveTo(xLine3*multiplier,measurements.I*multiplier) //waist center
-          ctx.lineTo((xLine4-0.75)*multiplier,measurements.I*multiplier) //left dart bottom
+          ctx.moveTo(0, yLine1);  //armhole
+          ctx.lineTo(xLine1,yLine2)
+          ctx.lineTo(xLine1,2)
+          ctx.lineTo(xLine2,0) //shoulder 2
+          ctx.lineTo(xLine3,(measurements.I-measurements.G)) //back center (curve)
+          ctx.lineTo(xLine3,measurements.I) //waist center
+          ctx.moveTo(xLine4,yLine1) //dart point
+          ctx.lineTo((xLine4+0.75),measurements.I) //right dart bottom
+          ctx.moveTo(xLine4,yLine1) //dart point
+          ctx.lineTo((xLine4-0.75),measurements.I) //left dart bottom
+          ctx.moveTo(xLine3,measurements.I) //waist center
+          ctx.lineTo((xLine4-0.75),measurements.I) //left dart bottom
           
           const a = Number((measurements.I/2)-1.25)
           const b = Number(xLine3-(measurements.B/4)-1.75)
     
           const x = Number((measurements.N*b/Math.sqrt(Math.pow(a,2)+Math.pow(b,2)))-b)
           const y = Number((measurements.N*a/Math.sqrt(Math.pow(a,2)+Math.pow(b,2)))-a)
-          ctx.lineTo((b+x)*multiplier,(measurements.I+y)*multiplier) //bottom side
-          ctx.lineTo(0, yLine1*multiplier); // back to underwarm
+          ctx.lineTo((b+x),(measurements.I+y)) //bottom side
+          ctx.lineTo(0, yLine1); // back to underwarm
           ctx.stroke();
           //add curves
       }
     
-    function drawFrontSkirt(ctx, multiplier){
+    function drawFrontSkirt(ctx){
         ctx.beginPath()
-        ctx.moveTo(0,((measurements.B/4)+1)*multiplier)
-        ctx.lineTo(7.125*multiplier,2*multiplier)
-        ctx.lineTo(23.875*multiplier,0)
-        ctx.lineTo(24.625*multiplier,(measurements.D/8 + 1.25)*multiplier)
-        ctx.lineTo(24.625*multiplier,((measurements.D/4)+2.5)*multiplier)
-        ctx.lineTo(0.625*multiplier,((measurements.D/4)+2.5)*multiplier)
+        ctx.moveTo(0,((measurements.B/4)+1))
+        ctx.lineTo(7.125,2)
+        ctx.lineTo(23.875,0)
+        ctx.lineTo(24.625,(measurements.D/8 + 1.25))
+        ctx.lineTo(24.625,((measurements.D/4)+2.5))
+        ctx.lineTo(0.625,((measurements.D/4)+2.5))
 
-        ctx.lineTo(0.625*multiplier, ((measurements.D/8)+2+(measurements.B/8))*multiplier)
-        ctx.lineTo(4.625*multiplier,((measurements.D/8)+1.75+(measurements.B/8))*multiplier)
-        ctx.lineTo(0.625*multiplier,((measurements.D/8)+1.5+(measurements.B/8))*multiplier)
-        ctx.lineTo(0.625*multiplier, ((measurements.D/8)+2+(measurements.B/8))*multiplier)
-        ctx.lineTo(0,((measurements.B/4)+1)*multiplier)
+        ctx.lineTo(0.625, ((measurements.D/8)+2+(measurements.B/8)))
+        ctx.lineTo(4.625,((measurements.D/8)+1.75+(measurements.B/8)))
+        ctx.lineTo(0.625,((measurements.D/8)+1.5+(measurements.B/8)))
+        ctx.lineTo(0.625, ((measurements.D/8)+2+(measurements.B/8)))
+        ctx.lineTo(0,((measurements.B/4)+1))
         ctx.stroke()
     }
    
@@ -87,136 +87,9 @@ function Canvas({typeId,measurements}){
         context.lineWidth = 5/INCHES_TO_PIXELS 
 
         clearCanvas(canvas,context)
-        draw(context, 1)
+        draw(context)
     }, [draw, measurements, typeId, canvasHeightInInches, canvasWidthInInches])
 
-    // function printCanvas(canvasRef){
-    //     const canvas = canvasRef.current
-    //     if (!canvas) {
-    //         console.error("Canvas element not found");
-    //         return;
-    //     }
-
-    //     const dataUrl = canvas.toDataURL("image/png")
-    //     const img = new Image()
-    //     img.src = dataUrl
-
-    //     const printWindow = window.open('', '', `width=${canvas.width},height=${canvas.height}`);
-
-    //     printWindow.document.write(`
-    //         <html>
-    //             <head>
-    //                 <title>Print Canvas</title>
-
-    //             </head>
-    //             <body style="text-align: center;" onload="window.print(); window.close();">
-    //                 <img src="${dataUrl}" style="width: 10200px; height:13200px;" />
-    // //             </body>
-    // //         </html>
-    // //     `);
-    // //     printWindow.document.close();
-    // // }
-
-    // function printTiledCanvas(canvasRef) {
-    //     const canvas = canvasRef.current;
-    //     if (!canvas) {
-    //         console.error("Canvas element not found");
-    //         return;
-    //     }
-    
-    //     const dpi = 300; // DPI for printing
-    //     const pageWidthInInches = 8.5; // Width of a printed page in inches
-    //     const pageHeightInInches = 11; // Height of a printed page in inches
-    
-    //     const pageWidth = pageWidthInInches * dpi; // Width in pixels
-    //     const pageHeight = pageHeightInInches * dpi; // Height in pixels
-    
-    //     // Generate tiles
-    //     const tiles = [];
-    //     for (let y = 0; y < canvas.height; y += pageHeight) {
-    //         for (let x = 0; x < canvas.width; x += pageWidth) {
-    //             const tileCanvas = document.createElement("canvas");
-    //             tileCanvas.width = pageWidth;
-    //             tileCanvas.height = pageHeight;
-    
-    //             const tileCtx = tileCanvas.getContext("2d");
-    
-    //             console.log(`Drawing tile at x: ${x}, y: ${y}, width: ${pageWidth}, height: ${pageHeight}`);
-    //             tileCtx.drawImage(
-    //                 canvas,
-    //                 x, y, pageWidth, pageHeight, // Source rectangle
-    //                 0, 0, pageWidth, pageHeight  // Destination rectangle
-    //             );
-    
-    //             tiles.push(tileCanvas.toDataURL("image/png"));
-    //         }
-    //     }
-    
-    //     // Render the tiles for debugging
-    //     const debugWindow = window.open("", "_blank");
-    //     if (!debugWindow) {
-    //         console.error("Failed to open a new window for debugging");
-    //         return;
-    //     }
-    
-    //     debugWindow.document.write(`
-    //         <html>
-    //             <head>
-    //                 <title>Debug Canvas Tiles</title>
-    //                 <style>
-    //                     body { margin: 0; padding: 0; display: flex; flex-wrap: wrap; }
-    //                     img { margin: 5px; border: 1px solid black; }
-    //                 </style>
-    //             </head>
-    //             <body>
-    //                 ${tiles
-    //                     .map((tile, index) => `<img src="${tile}" alt="Tile ${index + 1}" />`)
-    //                     .join("")}
-    //             </body>
-    //         </html>
-    //     `);
-    
-    //     debugWindow.document.close();
-    
-    //     // Optionally, print the tiles
-    //     const printWindow = window.open("", "_blank");
-    //     if (!printWindow) {
-    //         console.error("Failed to open a new window for printing");
-    //         return;
-    //     }
-    
-    //     printWindow.document.write(`
-    //         <html>
-    //             <head>
-    //                 <title>Print Canvas Tiles</title>
-    //                 <style>
-    //                     body { margin: 0; padding: 0; }
-    //                     .page {
-    //                         width: ${pageWidthInInches}in;
-    //                         height: ${pageHeightInInches}in;
-    //                         page-break-after: always;
-    //                         display: flex;
-    //                         align-items: center;
-    //                         justify-content: center;
-    //                     }
-    //                     img { width: 100%; height: auto; }
-    //                 </style>
-    //             </head>
-    //             <body>
-    //                 ${tiles
-    //                     .map(
-    //                         (tile, index) =>
-    //                             `<div class="page"><img src="${tile}" alt="Tile ${index + 1}" /></div>`
-    //                     )
-    //                     .join("")}
-    //             </body>
-    //         </html>
-    //     `);
-    
-    //     printWindow.document.close();
-    //     printWindow.focus();
-    //     printWindow.print();
-    // }
 
     function printTiledCanvas(canvasRef) {
         const canvas = canvasRef.current;
