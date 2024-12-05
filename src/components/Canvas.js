@@ -2,9 +2,9 @@ import React,{useRef,useEffect} from 'react'
 
 function Canvas({typeId,measurements}){
     const INCHES_TO_PIXELS = 300; // 96 pixels per inch for printing purposes
-    const canvasWidthInInches = 8.5*4; // Target width in inches for the printed canvas
-    const canvasHeightInInches = 11*4; // Target height in inches for the printed canvas
-
+    const canvasWidthInInches = 8.5*3; // Target width in inches for the printed canvas
+    const canvasHeightInInches = 11*2; // Target height in inches for the printed canvas
+    
     function drawBackTop(ctx){       
         const xLine3 = Number(measurements.L/2+0.5)
         const xLine1 = Number(xLine3-measurements.K/2-(3/8))
@@ -166,7 +166,7 @@ function Canvas({typeId,measurements}){
         `);
     
         printWindow.document.close();
-        printWindow.focus(); // Focus on the new window
+        // printWindow.focus(); // Focus on the new window
         printWindow.print(); // Trigger the print dialog
     }
     
