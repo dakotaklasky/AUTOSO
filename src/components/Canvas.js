@@ -3,7 +3,7 @@ import React,{useRef,useEffect} from 'react'
 function Canvas({typeId,measurements}){
     const INCHES_TO_PIXELS = 300; // 96 pixels per inch for printing purposes
     const canvasWidthInInches = 8.5*3; // Target width in inches for the printed canvas
-    const canvasHeightInInches = 11*2; // Target height in inches for the printed canvas
+    const canvasHeightInInches = 11*1.75; // Target height in inches for the printed canvas
     
     function drawBackTop(ctx){       
         const xLine3 = Number(measurements.L/2+0.5)
@@ -40,6 +40,7 @@ function Canvas({typeId,measurements}){
       }
     
     function drawFrontSkirt(ctx){
+
         ctx.beginPath()
         ctx.moveTo(0,((measurements.B/4)+1))
         ctx.lineTo(7.125,2)
@@ -54,6 +55,24 @@ function Canvas({typeId,measurements}){
         ctx.lineTo(0.625, ((measurements.D/8)+2+(measurements.B/8)))
         ctx.lineTo(0,((measurements.B/4)+1))
         ctx.stroke()
+
+ 
+    }
+
+    function drawBackSkirt(ctx){
+        ctx.beginPath()
+        ctx.moveTo(0,(measurements.D/4)-(measurements.B/4)+1.5)
+        ctx.lineTo(0.25,(measurements.D/4)-(measurements.B/8)+2.125)
+        ctx.lineTo(4.5,(measurements.D/4)-(measurements.B/8)+2.5)
+        ctx.lineTo(0.25,(measurements.D/4)-(measurements.B/8)+1.75)
+        ctx.lineTo(0.25,(measurements.D/4)-(measurements.B/8)+2.125)
+        ctx.lineTo(0.25,(measurements.D/4)+2.75)
+        ctx.lineTo(24.5,(measurements.D/4)+2.75)
+        ctx.lineTo(24.5,(measurements.D/8)+(11/8))
+        ctx.lineTo(23.5,0)
+        ctx.lineTo(4.5,2)
+        ctx.lineTo(0,(measurements.D/4)-(measurements.B/4)+1.5)
+        ctx.stroke()
     }
    
     const canvasRef = useRef(null) // declare reference to canvas dom element and set its value to null
@@ -62,8 +81,11 @@ function Canvas({typeId,measurements}){
     if(typeId === "1"){
         draw = drawBackTop
     }
-    else if(typeId === "3"){
+    else if(typeId === "2"){
         draw = drawFrontSkirt
+    }
+    else if(typeId === "3"){
+        draw = drawBackSkirt
     }
         
     function clearCanvas(canvas, context){

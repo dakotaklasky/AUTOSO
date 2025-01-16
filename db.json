@@ -26,8 +26,16 @@
       }
     },
     {
+      "id": "2",
+      "type": "Front Skirt",
+      "measurements": {
+        "B": "Waist Circumference at natural bend",
+        "D": "High Hip Circumference at fullest part "
+      }
+    },
+    {
       "id": "3",
-      "type": "Skirt",
+      "type": "Back Skirt",
       "measurements": {
         "B": "Waist Circumference at natural bend",
         "D": "High Hip Circumference at fullest part "
@@ -387,6 +395,17 @@
       "type": "Skirt",
       "typeId": "3",
       "dateCreated": "11/14/2024",
+      "mymeasurements": {
+        "B": "30",
+        "D": "40"
+      }
+    },
+    {
+      "id": "6b86dc21-a849-4329-9fa2-96daa7c4321f",
+      "name": "dd",
+      "type": "Skirt",
+      "typeId": "3",
+      "dateCreated": "1/16/2025",
       "mymeasurements": {
         "B": "30",
         "D": "40"
