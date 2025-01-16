@@ -2,7 +2,7 @@
   "patterns": [
     {
       "id": "1",
-      "type": "Top",
+      "type": "Front Top",
       "measurements": {
         "A": "Bust Circumference at fullest part",
         "B": "Waist Circumference at natural bend",
@@ -27,6 +27,31 @@
     },
     {
       "id": "2",
+      "type": "Back Top",
+      "measurements": {
+        "A": "Bust Circumference at fullest part",
+        "B": "Waist Circumference at natural bend",
+        "C": "High Hip/Abdomen Circumference 4in below waist",
+        "D": "High Hip Circumference at fullest part ",
+        "E": "Neck Circumference at base of neck",
+        "F": "Front Waist Length from center front neck",
+        "G": "Back Waist Length from center back neck",
+        "H": "Front Shoulder to Waist from side neck",
+        "I": "Back Shoulder to Waist from side neck",
+        "J": "Shoulder Length",
+        "K": "Across Back armhole to armhole",
+        "L": "Across Back 2in below armhole, sideseam to sideseam",
+        "M": "Across Front armhole to armhole",
+        "N": "Side Length from underarm to waist",
+        "O": "Sleeve Length shoulder to wrist, elbow bent",
+        "P": "Underarm Length, underarm to waist",
+        "Q": "Bicep Circumference at fullest part of upper arm",
+        "R": "Elbow Circumference",
+        "S": "Wrist Circumference"
+      }
+    },
+    {
+      "id": "3",
       "type": "Front Skirt",
       "measurements": {
         "B": "Waist Circumference at natural bend",
@@ -34,7 +59,7 @@
       }
     },
     {
-      "id": "3",
+      "id": "4",
       "type": "Back Skirt",
       "measurements": {
         "B": "Waist Circumference at natural bend",
